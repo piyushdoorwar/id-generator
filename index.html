@@ -14,36 +14,47 @@
       <section class="panel">
         <div class="generate-header">
           <strong>Generate new IDs</strong>
-          <div class="generate-controls">
-            <select id="id-type">
-              <option value="uuid-v1">UUID v1</option>
-              <option value="uuid-v3">UUID v3</option>
-              <option value="uuid-v4" selected>UUID v4</option>
-              <option value="uuid-v5">UUID v5</option>
-              <option value="uuid-v7">UUID v7</option>
-              <option value="ulid">ULID</option>
-              <option value="objectid">Object ID</option>
-              <option value="nanoid">Nano ID</option>
-            </select>
-            <div class="counter-container">
-              <span>×</span>
-              <input id="count-input" class="counter-input" type="number" min="1" max="1000" value="1" />
-            </div>
-            <label class="lowercase-toggle">
-              <input type="checkbox" id="lowercase" checked /> Lowercased
-            </label>
+        </div>
+        <div class="generate-controls-all">
+          <select id="id-type">
+            <option value="uuid-v1">UUID v1</option>
+            <option value="uuid-v3">UUID v3</option>
+            <option value="uuid-v4" selected>UUID v4</option>
+            <option value="uuid-v5">UUID v5</option>
+            <option value="uuid-v7">UUID v7</option>
+            <option value="ulid">ULID</option>
+            <option value="objectid">Object ID</option>
+            <option value="nanoid">Nano ID</option>
+          </select>
+          <div class="counter-container">
+            <span>×</span>
+            <input id="count-input" class="counter-input" type="number" min="1" max="1000" value="1" />
           </div>
+          <label class="lowercase-toggle">
+            <input type="checkbox" id="lowercase" checked /> Lowercased
+          </label>
+          <button class="btn-icon-generate" id="generate-btn" title="Generate">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Generate
+          </button>
         </div>
         <div class="extra-inputs" id="hash-inputs" style="display: none;">
           <input id="namespace-input" class="namespace-input" type="text" value="6ba7b810-9dad-11d1-80b4-00c04fd430c8" />
           <input id="name-input" class="name-input" type="text" value="example.com" />
         </div>
-        <div class="split-buttons">
-          <button class="btn" id="generate-btn">Generate</button>
-          <button class="btn secondary" id="download-btn">Download</button>
-        </div>
         <div class="editor-wrapper">
           <div class="editor-toolbar">
+            <button class="editor-btn" id="download-btn" title="Download">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
             <button class="editor-btn" id="copy-output-btn" title="Copy">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -66,9 +77,27 @@
         <div class="panel-header">
           <strong>Decode</strong>
           <div class="controls">
-            <button class="btn secondary" id="clipboard-btn">Clipboard</button>
-            <button class="btn secondary" id="sample-btn">Sample (random v4)</button>
-            <button class="btn secondary" id="clear-decode-btn">Clear</button>
+            <button class="editor-btn" id="clipboard-btn" title="Paste from clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+            </button>
+            <button class="editor-btn" id="sample-btn" title="Generate random sample">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <circle cx="15.5" cy="8.5" r="1.5"></circle>
+                <circle cx="8.5" cy="15.5" r="1.5"></circle>
+                <circle cx="15.5" cy="15.5" r="1.5"></circle>
+              </svg>
+            </button>
+            <button class="editor-btn" id="clear-decode-btn" title="Clear">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
         </div>
         <div class="input-with-button">
