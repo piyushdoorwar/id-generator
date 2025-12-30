@@ -7,6 +7,7 @@ const clearDecodeBtn = document.getElementById("clear-decode-btn");
 
 const generateBtn = document.getElementById("generate-btn");
 const copyOutputBtn = document.getElementById("copy-output-btn");
+const downloadBtn = document.getElementById("download-btn");
 const clearOutputBtn = document.getElementById("clear-output-btn");
 const outputArea = document.getElementById("output-area");
 const idTypeSelect = document.getElementById("id-type");
@@ -220,6 +221,20 @@ generateBtn.addEventListener("click", () => generateIds());
 copyOutputBtn.addEventListener("click", () => {
   if (!outputArea.value.trim()) return;
   navigator.clipboard.writeText(outputArea.value).then(() => showToast("Copied"));
+});
+
+downloadBtn.addEventListener("click", () => {
+  if (!outputArea.value.trim()) return;
+  const blob = new Blob([outputArea.value], { type: "text/plain" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "id.txt";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("Downloaded");
 });
 
 clearOutputBtn.addEventListener("click", () => {

@@ -414,6 +414,18 @@ select:hover,
   font-variant-numeric: tabular-nums;
 }
 
+/* Hide number input spinners */
+.counter-input::-webkit-outer-spin-button,
+.counter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.counter-input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
 .extra-inputs {
   display: flex;
   flex-direction: column;
