@@ -359,6 +359,13 @@ textarea:focus {
   gap: 16px;
 }
 
+.generate-controls-all {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .generate-controls-row {
   display: flex;
   align-items: center;
