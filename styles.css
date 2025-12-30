@@ -439,6 +439,116 @@ select:hover,
   margin-top: 4px;
 }
 
+.editor-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: rgba(10, 14, 23, 0.5);
+  overflow: hidden;
+  height: 400px;
+  max-height: 400px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.editor-wrapper:hover {
+  border-color: var(--border-medium);
+  background: rgba(10, 14, 23, 0.7);
+}
+
+.editor-wrapper:focus-within {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(67, 217, 160, 0.15),
+              0 4px 12px rgba(67, 217, 160, 0.1);
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(10, 14, 23, 0.8);
+  border-bottom: 1px solid var(--border-subtle);
+  justify-content: flex-end;
+}
+
+.editor-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.03);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.editor-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-secondary);
+  transition: stroke 0.25s ease;
+}
+
+.editor-btn:hover {
+  background: rgba(67, 217, 160, 0.15);
+  border-color: var(--accent-primary);
+  transform: scale(1.05);
+}
+
+.editor-btn:hover svg {
+  stroke: var(--accent-primary);
+}
+
+.editor-btn:active {
+  transform: scale(0.98);
+}
+
+.code-editor {
+  flex: 1;
+  padding: 18px;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: pre;
+  letter-spacing: 0.02em;
+  outline: none;
+  word-break: break-all;
+}
+
+.code-editor:empty::before {
+  content: attr(data-placeholder);
+  color: var(--text-tertiary);
+  font-style: italic;
+  font-family: "Inter", sans-serif;
+  white-space: normal;
+}
+
+.code-editor::-webkit-scrollbar {
+  width: 10px;
+}
+
+.code-editor::-webkit-scrollbar-track {
+  background: rgba(10, 14, 23, 0.3);
+  border-radius: 5px;
+}
+
+.code-editor::-webkit-scrollbar-thumb {
+  background: rgba(67, 217, 160, 0.3);
+  border-radius: 5px;
+  transition: background 0.25s ease;
+}
+
+.code-editor::-webkit-scrollbar-thumb:hover {
+  background: rgba(67, 217, 160, 0.5);
+}
+
 textarea {
   min-height: 300px;
   border-radius: var(--radius-lg);

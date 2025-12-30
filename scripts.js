@@ -54,8 +54,12 @@ clipboardBtn.addEventListener("click", async () => {
     const text = await navigator.clipboard.readText();
     decodeInput.value = text;
     decodeValue(text);
+    showToast("Pasted from clipboard");
   } catch (error) {
-    showToast("Clipboard denied");
+    // Fallback: focus input so user can paste manually
+    decodeInput.focus();
+    decodeInput.select();
+    showToast("Press Ctrl+V to paste");
   }
 });
 
@@ -219,13 +223,15 @@ idTypeSelect.addEventListener("change", updateHashInputs);
 generateBtn.addEventListener("click", () => generateIds());
 
 copyOutputBtn.addEventListener("click", () => {
-  if (!outputArea.value.trim()) return;
-  navigator.clipboard.writeText(outputArea.value).then(() => showToast("Copied"));
+  const text = outputArea.textContent.trim();
+  if (!text) return;
+  navigator.clipboard.writeText(text).then(() => showToast("Copied"));
 });
 
 downloadBtn.addEventListener("click", () => {
-  if (!outputArea.value.trim()) return;
-  const blob = new Blob([outputArea.value], { type: "text/plain" });
+  const text = outputArea.textContent.trim();
+  if (!text) return;
+  const blob = new Blob([text], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -238,7 +244,7 @@ downloadBtn.addEventListener("click", () => {
 });
 
 clearOutputBtn.addEventListener("click", () => {
-  outputArea.value = "";
+  outputArea.textContent = "";
 });
 
 let lastTimestamp = 0n;
@@ -288,7 +294,7 @@ async function generateIds() {
       results.push(applyCase(value, lowercase, type));
     }
   }
-  outputArea.value = results.join("\n");
+  outputArea.textContent = results.join("\n");
 }
 
 function applyCase(value, lower, type) {
