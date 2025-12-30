@@ -1,0 +1,351 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap");
+
+:root {
+  color: #f5f7fb;
+  background: #040910;
+  font-family: "Space Grotesk", "SF Pro Display", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% -10%, rgba(67, 217, 160, 0.4), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(91, 127, 243, 0.5), transparent 40%),
+    #040910;
+  color: #f5f7fb;
+  font-family: "Space Grotesk", "SF Pro Display", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 24px;
+}
+
+.app-shell {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.app-title {
+  text-align: center;
+  font-size: 2.4rem;
+  margin: 0;
+  color: #f5f7fb;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(500px, 1fr) minmax(500px, 1fr);
+  gap: 24px;
+}
+
+.panel {
+  background: rgba(9, 17, 34, 0.85);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  box-shadow: 0 25px 55px rgba(4, 9, 16, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.panel-header strong {
+  color: #f5f7fb;
+  font-weight: 600;
+  margin-right: 6px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.input-field {
+  width: 100%;
+  background: rgba(4, 9, 16, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #f5f7fb;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(67, 217, 160, 0.5);
+  box-shadow: 0 0 0 2px rgba(67, 217, 160, 0.3);
+}
+
+.input-with-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-button input {
+  padding-right: 40px;
+}
+
+.icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
+
+.icon-button svg {
+  width: 16px;
+  height: 16px;
+  fill: #f5f7fb;
+}
+
+.icon-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.decoded-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.decoded-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.decoded-field label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.decoded-field input {
+  background: rgba(4, 9, 16, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 12px 44px 12px 14px;
+  color: #f5f7fb;
+}
+
+.decoded-field .icon-button {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+}
+
+.decoded-field .input-with-button {
+  position: relative;
+}
+
+.generate-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.generate-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+select,
+textarea,
+.counter-input,
+.namespace-input,
+.name-input {
+  width: 100%;
+  background: rgba(4, 9, 16, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #f5f7fb;
+  padding: 12px 14px;
+  appearance: none;
+}
+
+select {
+  min-width: 190px;
+}
+
+.counter-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.counter-input {
+  width: 96px;
+  text-align: center;
+}
+
+.extra-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.split-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+textarea {
+  min-height: 270px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(4, 9, 16, 0.9);
+  padding: 16px;
+  resize: none;
+  font-family: "JetBrains Mono", "Fira Code", "Space Grotesk", monospace;
+  letter-spacing: 0.05em;
+  color: #f5f7fb;
+  line-height: 1.4;
+}
+
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+}
+
+.lowercase-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.lowercase-toggle input {
+  width: auto;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(9, 17, 34, 0.95);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(67, 217, 160, 0.5);
+  color: #f5f7fb;
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gear-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.gear-button svg {
+  width: 18px;
+  height: 18px;
+  fill: #f5f7fb;
+}
+
+.split::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 1100px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .split::after {
+    display: none;
+  }
+}

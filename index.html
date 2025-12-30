@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UUID/ULID Generate/Decode</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <h1 class="app-title">UUID/ULID Generate/Decode</h1>
+    <div class="split">
+      <section class="panel">
+        <div class="generate-header">
+          <strong>Generate new IDs</strong>
+          <div class="generate-controls">
+            <select id="id-type">
+              <option value="uuid-v1">UUID v1</option>
+              <option value="uuid-v3">UUID v3</option>
+              <option value="uuid-v4" selected>UUID v4</option>
+              <option value="uuid-v5">UUID v5</option>
+              <option value="uuid-v7">UUID v7</option>
+              <option value="ulid">ULID</option>
+              <option value="objectid">Object ID</option>
+              <option value="nanoid">Nano ID</option>
+            </select>
+            <div class="counter-container">
+              <span>×</span>
+              <input id="count-input" class="counter-input" type="number" min="1" max="1000" value="100" />
+            </div>
+            <label class="lowercase-toggle">
+              <input type="checkbox" id="lowercase" checked /> Lowercased
+            </label>
+          </div>
+        </div>
+        <div class="extra-inputs" id="hash-inputs" style="display: none;">
+          <input id="namespace-input" class="namespace-input" type="text" value="6ba7b810-9dad-11d1-80b4-00c04fd430c8" />
+          <input id="name-input" class="name-input" type="text" value="example.com" />
+        </div>
+        <div class="split-buttons">
+          <button class="btn" id="generate-btn">Generate</button>
+          <button class="btn secondary" id="copy-output-btn">Copy</button>
+          <button class="btn secondary" id="clear-output-btn">Clear</button>
+        </div>
+        <textarea id="output-area" readonly placeholder="Right click - Save to file..."></textarea>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <strong>Decode</strong>
+          <div class="controls">
+            <button class="btn secondary" id="clipboard-btn">Clipboard</button>
+            <button class="btn secondary" id="sample-btn">Sample (random v4)</button>
+            <button class="btn secondary" id="clear-decode-btn">Clear</button>
+            <button class="gear-button" aria-label="Settings">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2.5c-1.63 0-3.12-.55-4.3-1.48l-2.1.82-1.5-2.58 1.45-.93a8.12 8.12 0 0 1-.07-1.51c0-.5.05-1 .15-1.47L3.1 7.16l1.5-2.59 2.1.82A8.12 8.12 0 0 1 9.3 5.5L10 3.1h2l.7 2.4c.7.06 1.4.2 2.05.42l2.1-.82 1.5 2.58-1.45.93c.09.46.14.94.14 1.43 0 .5-.05 1-.15 1.47l1.55 1.05-1.5 2.58-2.1-.82c-1.18.93-2.67 1.48-4.3 1.48Z"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="input-with-button">
+          <input
+            type="text"
+            id="decode-input"
+            class="input-field"
+            placeholder="Paste a UUID or ULID"
+            autocomplete="off"
+          />
+        </div>
+        <div class="decoded-fields">
+          <div class="decoded-field" data-field="standard">
+            <label>Standard String Format</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="standard" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="decoded-field" data-field="raw">
+            <label>Raw Contents</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="raw" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="decoded-field" data-field="version">
+            <label>Version</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="version" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="decoded-field" data-field="variant">
+            <label>Variant</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="variant" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="decoded-field" data-field="time">
+            <label>Contents - Time</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="time" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="decoded-field" data-field="clock">
+            <label>Contents - Clock ID</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="clock" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="decoded-field" data-field="node">
+            <label>Contents - Node</label>
+            <div class="input-with-button">
+              <input type="text" readonly value="—" />
+              <button class="icon-button copy-field" data-target="node" aria-label="Copy">
+                <svg viewBox="0 0 24 24">
+                  <path d="m17 3-9 9h4v7h5v-7h4Z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="scripts.js"></script>
+</body>
+</html>
