@@ -63,7 +63,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 32px 24px;
+  padding: 20px 24px 28px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -100,10 +100,10 @@ body::before {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 48px 32px;
+  padding: 32px 32px 36px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   position: relative;
   z-index: 1;
   align-items: flex-start;
@@ -123,7 +123,7 @@ body::before {
   font-size: 2rem;
   font-weight: 800;
   letter-spacing: -0.02em;
-  margin: 0;
+  margin-top: -30px;
   background: linear-gradient(135deg, var(--accent-yellow), var(--accent-purple-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -137,30 +137,6 @@ body::before {
   font-family: 'Inter', sans-serif;
 }
 
-/* Decorative separator below title */
-.app-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--accent-yellow) 20%, var(--accent-purple-light) 50%, var(--accent-pink) 80%, transparent);
-  border-radius: 2px;
-  animation: separatorGlow 3s ease-in-out infinite;
-}
-
-@keyframes separatorGlow {
-  0%, 100% {
-    opacity: 0.6;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-  }
-  50% {
-    opacity: 1;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 30px rgba(139, 92, 246, 0.4);
-  }
-}
 
 @keyframes fadeInDown {
   from {
@@ -175,7 +151,7 @@ body::before {
 
 .split {
   display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  grid-template-columns: minmax(500px, 1.5fr) minmax(500px, 1fr);
   gap: 28px;
   position: relative;
 }
@@ -738,20 +714,18 @@ textarea:hover {
   gap: 0.5rem;
   padding: 0.35rem 0.95rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.03);
+  border: none;
   color: var(--text-secondary);
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   cursor: pointer;
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
   position: relative;
 }
 
 .lowercase-toggle:hover {
   color: var(--text-primary);
-  border-color: var(--border-light);
   transform: translateY(-1px);
 }
 
