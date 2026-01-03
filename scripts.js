@@ -12,6 +12,7 @@ const clearOutputBtn = document.getElementById("clear-output-btn");
 const outputArea = document.getElementById("output-area");
 const idTypeSelect = document.getElementById("id-type");
 const lowercaseToggle = document.getElementById("lowercase");
+const lowercaseText = document.querySelector(".lowercase-text");
 const countInput = document.getElementById("count-input");
 const hashInputs = document.getElementById("hash-inputs");
 const namespaceInput = document.getElementById("namespace-input");
@@ -29,6 +30,11 @@ function setField(key, value) {
 
 function resetFields() {
   Object.keys(fieldInputs).forEach(key => setField(key, "—"));
+}
+
+function updateLowercaseLabel() {
+  if (!lowercaseText) return;
+  lowercaseText.textContent = lowercaseToggle.checked ? "Lowercased" : "Uppercased";
 }
 
 function showToast(message) {
@@ -215,10 +221,12 @@ function updateHashInputs() {
     hashInputs.style.display = "none";
     lowercaseToggle.checked = type !== "ulid";
   }
+  updateLowercaseLabel();
 }
 
 updateHashInputs();
 idTypeSelect.addEventListener("change", updateHashInputs);
+lowercaseToggle.addEventListener("change", updateLowercaseLabel);
 
 generateBtn.addEventListener("click", () => generateIds());
 

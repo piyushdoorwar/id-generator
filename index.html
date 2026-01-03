@@ -9,7 +9,9 @@
 </head>
 <body>
   <div class="app-shell">
-    <h1 class="app-title">ID Generator Decoder</h1>
+    <header class="app-header">
+      <h1 class="app-title">ID Generator Decoder</h1>
+    </header>
     <div class="split">
       <section class="panel">
         <div class="generate-header">
@@ -31,7 +33,9 @@
             <input id="count-input" class="counter-input" type="number" min="1" max="1000" value="1" />
           </div>
           <label class="lowercase-toggle">
-            <input type="checkbox" id="lowercase" checked /> Lowercased
+            <input type="checkbox" id="lowercase" checked />
+            <span class="lowercase-slider" aria-hidden="true"></span>
+            <span class="lowercase-text">Lowercased</span>
           </label>
           <button class="btn-icon-generate" id="generate-btn" title="Generate">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -176,5 +180,6 @@
   </div>
   <div class="toast" id="toast"></div>
   <script src="scripts.js"></script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e9cd556fb46f4880a8842d37e2dfe3fb"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
