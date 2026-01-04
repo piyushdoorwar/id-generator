@@ -2,7 +2,7 @@ const decodeInput = document.getElementById("decode-input");
 const decodedFieldBlocks = document.querySelectorAll(".decoded-field");
 const toast = document.getElementById("toast");
 const clipboardBtn = document.getElementById("clipboard-btn");
-const sampleBtn = document.querySelector('[data-action="loadSample"]');
+const sampleBtn = document.getElementById("sample-btn") || document.querySelector('[data-action="loadSample"]');
 const clearDecodeBtn = document.getElementById("clear-decode-btn");
 
 const generateBtn = document.getElementById("generate-btn");
@@ -53,9 +53,9 @@ document.querySelectorAll(".copy-field").forEach(btn => {
   });
 });
 
-decodeInput.addEventListener("input", () => decodeValue(decodeInput.value));
+decodeInput?.addEventListener("input", () => decodeValue(decodeInput.value));
 
-clipboardBtn.addEventListener("click", async () => {
+clipboardBtn?.addEventListener("click", async () => {
   try {
     const text = await navigator.clipboard.readText();
     decodeInput.value = text;
@@ -69,13 +69,13 @@ clipboardBtn.addEventListener("click", async () => {
   }
 });
 
-sampleBtn.addEventListener("click", () => {
+sampleBtn?.addEventListener("click", () => {
   const sample = crypto.randomUUID();
   decodeInput.value = sample;
   decodeValue(sample);
 });
 
-clearDecodeBtn.addEventListener("click", () => {
+clearDecodeBtn?.addEventListener("click", () => {
   decodeInput.value = "";
   resetFields();
 });
