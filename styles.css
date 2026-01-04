@@ -616,6 +616,8 @@ select:hover,
   padding: 10px 12px;
   background: var(--panel-bg-elevated);
   border-bottom: 1px solid var(--border);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
   justify-content: flex-end;
   overflow: visible;
   position: relative;
