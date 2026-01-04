@@ -2,7 +2,7 @@ const decodeInput = document.getElementById("decode-input");
 const decodedFieldBlocks = document.querySelectorAll(".decoded-field");
 const toast = document.getElementById("toast");
 const clipboardBtn = document.getElementById("clipboard-btn");
-const sampleBtn = document.getElementById("sample-btn");
+const sampleBtn = document.querySelector('[data-action="loadSample"]');
 const clearDecodeBtn = document.getElementById("clear-decode-btn");
 
 const generateBtn = document.getElementById("generate-btn");

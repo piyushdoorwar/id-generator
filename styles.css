@@ -225,6 +225,24 @@ body::before {
   position: relative;
 }
 
+/* Tooltips in controls appear on top */
+.controls .editor-btn[title]::after {
+  top: auto;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+}
+
+.controls .editor-btn[title]:hover::after {
+  transform: translateX(-50%) translateY(0);
+}
+
+.controls .editor-btn[title]::before {
+  top: auto;
+  bottom: calc(100% + 2px);
+  border-bottom-color: transparent;
+  border-top-color: var(--panel-bg-elevated);
+}
+
 button,
 input,
 select,
