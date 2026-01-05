@@ -25,7 +25,9 @@ decodedFieldBlocks.forEach(block => {
 });
 
 function setField(key, value) {
-  fieldInputs[key].value = value;
+  if (fieldInputs[key]) {
+    fieldInputs[key].value = value;
+  }
 }
 
 function resetFields() {
