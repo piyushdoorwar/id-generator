@@ -36,7 +36,7 @@ function resetFields() {
 
 function updateLowercaseLabel() {
   if (!lowercaseText) return;
-  lowercaseText.textContent = lowercaseToggle.checked ? "Lowercased" : "Uppercased";
+  lowercaseText.textContent = lowercaseToggle.checked ? "Lowercase" : "Uppercase";
 }
 
 function showToast(message) {
