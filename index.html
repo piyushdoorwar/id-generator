@@ -32,11 +32,6 @@
             <span>×</span>
             <input id="count-input" class="counter-input" type="number" min="1" max="1000" value="1" />
           </div>
-          <label class="lowercase-toggle">
-            <input type="checkbox" id="lowercase" checked />
-            <span class="lowercase-slider" aria-hidden="true"></span>
-            <span class="lowercase-text">Lowercase</span>
-          </label>
           <button class="btn-icon-generate" id="generate-btn" title="Generate">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle>
@@ -52,26 +47,37 @@
         </div>
         <div class="editor-wrapper">
           <div class="editor-toolbar">
-            <button class="editor-btn" id="download-btn" title="Download">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-            </button>
-            <button class="editor-btn" id="copy-output-btn" title="Copy">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-              </svg>
-            </button>
-            <button class="editor-btn" id="clear-output-btn" title="Clear">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 6h18"></path>
-                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
-                <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-              </svg>
-            </button>
+            <div class="editor-toolbar-left">
+              <div class="case-toggle" role="group" aria-label="Case">
+                <span class="case-label">case</span>
+                <div class="case-options">
+                  <button type="button" class="case-option is-active" data-case="lower" aria-pressed="true">lower</button>
+                  <button type="button" class="case-option" data-case="upper" aria-pressed="false">upper</button>
+                </div>
+              </div>
+            </div>
+            <div class="editor-toolbar-right">
+              <button class="editor-btn" id="download-btn" title="Download">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </button>
+              <button class="editor-btn" id="copy-output-btn" title="Copy">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+              <button class="editor-btn" id="clear-output-btn" title="Clear">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path>
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </div>
           </div>
           <div id="output-area" class="code-editor" contenteditable="true" spellcheck="false" data-placeholder="Generated IDs will appear here..."></div>
         </div>

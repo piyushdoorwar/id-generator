@@ -11,8 +11,8 @@ const downloadBtn = document.getElementById("download-btn");
 const clearOutputBtn = document.getElementById("clear-output-btn");
 const outputArea = document.getElementById("output-area");
 const idTypeSelect = document.getElementById("id-type");
-const lowercaseToggle = document.getElementById("lowercase");
-const lowercaseText = document.querySelector(".lowercase-text");
+const caseToggle = document.querySelector(".case-toggle");
+const caseOptionButtons = document.querySelectorAll(".case-option");
 const countInput = document.getElementById("count-input");
 const hashInputs = document.getElementById("hash-inputs");
 const namespaceInput = document.getElementById("namespace-input");
@@ -34,9 +34,32 @@ function resetFields() {
   Object.keys(fieldInputs).forEach(key => setField(key, "—"));
 }
 
-function updateLowercaseLabel() {
-  if (!lowercaseText) return;
-  lowercaseText.textContent = lowercaseToggle.checked ? "Lowercase" : "Uppercase";
+let caseMode = "lower";
+let caseLocked = false;
+
+function setCaseMode(mode) {
+  caseMode = mode;
+  caseOptionButtons.forEach(button => {
+    const isActive = button.dataset.case === mode;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+  applyCaseToOutput();
+}
+
+function setCaseLock(locked) {
+  caseLocked = locked;
+  if (!caseToggle) return;
+  caseToggle.classList.toggle("is-locked", locked);
+  caseOptionButtons.forEach(button => {
+    button.disabled = locked && button.dataset.case !== "lower";
+  });
+}
+
+function applyCaseToOutput() {
+  const text = outputArea.textContent;
+  if (!text || !text.trim()) return;
+  outputArea.textContent = applyCase(text, caseMode);
 }
 
 function showToast(message) {
@@ -218,17 +241,25 @@ function updateHashInputs() {
   const type = idTypeSelect.value;
   if (type === "uuid-v3" || type === "uuid-v5") {
     hashInputs.style.display = "flex";
-    lowercaseToggle.checked = true;
+    setCaseMode("lower");
+    setCaseLock(true);
   } else {
     hashInputs.style.display = "none";
-    lowercaseToggle.checked = type !== "ulid";
+    setCaseLock(false);
+    if (type === "ulid") {
+      setCaseMode("upper");
+    }
   }
-  updateLowercaseLabel();
 }
 
 updateHashInputs();
 idTypeSelect.addEventListener("change", updateHashInputs);
-lowercaseToggle.addEventListener("change", updateLowercaseLabel);
+caseOptionButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if (caseLocked) return;
+    setCaseMode(button.dataset.case);
+  });
+});
 
 generateBtn.addEventListener("click", () => generateIds());
 
@@ -267,7 +298,6 @@ async function generateIds() {
   if (Number.isNaN(count) || count < 1) count = 1;
   if (count > 1000) count = 1000;
   countInput.value = count;
-  const lowercase = lowercaseToggle.checked;
   const results = [];
 
   for (let i = 0; i < count; i += 1) {
@@ -301,18 +331,17 @@ async function generateIds() {
         value = "";
     }
     if (value) {
-      results.push(applyCase(value, lowercase, type));
+      results.push(applyCase(value, caseMode));
     }
   }
   outputArea.textContent = results.join("\n");
 }
 
-function applyCase(value, lower, type) {
-  if (lower) {
-    return value.toLowerCase();
-  } else {
+function applyCase(value, mode) {
+  if (mode === "upper") {
     return value.toUpperCase();
   }
+  return value.toLowerCase();
 }
 
 function generateUUIDv1() {
