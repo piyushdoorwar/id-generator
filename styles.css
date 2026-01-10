@@ -564,7 +564,7 @@ select:hover,
   padding: 8px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
-  background: var(--accent-yellow);
+  background: linear-gradient(135deg, var(--accent-yellow), var(--accent-yellow-light));
   color: var(--bg);
   font-weight: 600;
   cursor: pointer;
@@ -574,6 +574,8 @@ select:hover,
   font-size: 0.8125rem;
   letter-spacing: 0.01em;
   min-height: 36px;
+  margin-left: auto;
+  box-shadow: 0 6px 18px rgba(255, 215, 0, 0.18);
 }
 
 .btn-icon-generate svg {
@@ -584,9 +586,9 @@ select:hover,
 }
 
 .btn-icon-generate:hover {
-  background: var(--accent-yellow-dark);
+  background: linear-gradient(135deg, var(--accent-yellow-dark), var(--accent-yellow));
   transform: translateY(-2px);
-  box-shadow: var(--shadow-yellow);
+  box-shadow: 0 10px 26px rgba(255, 215, 0, 0.3);
 }
 
 .btn-icon-generate:hover svg {
